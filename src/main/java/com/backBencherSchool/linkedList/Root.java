@@ -62,6 +62,30 @@ class LinkList{
             System.out.print(head.data+", ");
             head = head.next;
         }
+        System.out.println();
+    }
+
+    public Node reverseListIteration(Node head){
+        Node pre = null;
+        Node curr = null;
+        Node next = head;
+        while (next != null){
+            curr = next;
+            next = next.next;
+            curr.next = pre;
+            pre = curr;
+        }
+        return curr;
+    }
+
+    public Node reverseListRecursive(Node head){
+        if (head == null || head.next == null){
+            return head;
+        }
+        Node p = reverseListRecursive(head.next);
+        head.next.next = head;
+        head.next = null;
+        return p;
     }
 }
 
@@ -77,8 +101,12 @@ public class Root {
         root = linkList.addMiddlePosition(root, 5, 1);
 
         linkList.print(root);
+        System.out.println("jhjhg");
+        Node node = linkList.reverseListRecursive(root);
+        linkList.print(node);
+        Node node1 = linkList.reverseListIteration(node);
+        linkList.print(node1);
 
-        Integer a = null;
-        System.out.println(a+"10");
+
     }
 }
